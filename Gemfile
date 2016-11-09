@@ -24,7 +24,6 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
 gem 'devise'
-gem 'factory_girl'
 gem 'capybara'
 
 
@@ -41,6 +40,8 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails'
   gem 'sqlite3'
+
+  gem 'factory_girl_rails'
 end
 
 group :development do
