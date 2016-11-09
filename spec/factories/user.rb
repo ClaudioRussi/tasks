@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :user, aliases:['author'] do
+  factory :user, aliases:[:author] do
     first_name {'Pedro'}
     last_name {'Fernandez'}
     password {'topsecret'}
@@ -7,7 +7,7 @@ FactoryGirl.define do
     email {'example@mail.com'}
   end
 
-  factory :user2, aliases:['collaborator'], class: :user do
+  factory :user2, aliases:[:collaborator], class: :user do
     first_name {'Pablo'}
     last_name {'Picapiedra'}
     password {'topsecret'}
