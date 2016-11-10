@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161109025905) do
+ActiveRecord::Schema.define(version: 20161109182639) do
+
+  create_table "connection_requests", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "connection_id"
+    t.string   "status"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["connection_id"], name: "index_connection_requests_on_connection_id"
+    t.index ["user_id"], name: "index_connection_requests_on_user_id"
+  end
 
   create_table "groups", force: :cascade do |t|
     t.string   "name"

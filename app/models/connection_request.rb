@@ -1,0 +1,2 @@
+class ConnectionRequest < ApplicationRecord
+end
