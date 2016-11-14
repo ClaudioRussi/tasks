@@ -1,0 +1,3 @@
+<% @requests.each do |request| %>
+  <%= request.user.full_name %> <%=button_to 'Accept friend request', accept_request_path(request)%>
+<% end %>

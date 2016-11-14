@@ -1,0 +1,2 @@
+class CreateJoinTableCollaboratorProject < ApplicationRecord
+end

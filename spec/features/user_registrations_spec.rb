@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.feature "UserRegistrations", type: :feature do
   scenario "trying to register with correct params" do
     visit 'sign_up'
+    save_and_open_page
     fill_in 'First name', with: 'Pedro'
     fill_in 'Last name', with: 'Fernandez'
     fill_in 'Email', with: 'pedro@example.com'

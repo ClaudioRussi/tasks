@@ -1,0 +1,21 @@
+<h2><%= @project.name %> </h2>
+<p>Tasks:  <%=@project.tasks.count %></p>
+<p>Groups: </p>
+<ul>
+  <% @project.groups.each do |group|%>
+    <li>
+      <%=link_to group.name, group_path(group) %>
+    </li>
+  <%end%>
+</ul>
+<ul>
+  <% @project.collaborators.each do |collaborator| %>
+    <%=link_to collaborator.full_name, user_path(collaborator) %>
+  <%end%>
+</ul>
+<p><%=link_to 'Add a new group', new_project_group_path(@project)%> </p>
+<%=form_tag add_collaborator_path(@project), method: :patch do%>
+  <%=label_tag :add_collaborator %>
+  <%=select_tag(:collaborator_id, options_for_select(@connections_to_add)) %>
+  <%=submit_tag 'Add to project'%>
+<%end%>

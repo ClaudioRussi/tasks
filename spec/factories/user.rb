@@ -12,6 +12,6 @@ FactoryGirl.define do
     last_name {'Picapiedra'}
     password {'topsecret'}
     password_confirmation {'topsecret'}
-    email {'example@hotmail.com'}
+    email {'mark@hotmail.com'}
   end
 end

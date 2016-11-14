@@ -1,0 +1,14 @@
+<%= form_for [@project,@group] do |f| %>
+  <%if @group.errors.any? %>
+    <ul>
+    <%@group.errors.full_messages.each do |message|%>
+      <li>
+      <%=message%>
+      </li>
+    <%end%>
+    </ul>
+  <% end %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.submit 'Create group' %>
+<%end%>

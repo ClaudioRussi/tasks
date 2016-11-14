@@ -1,0 +1,4 @@
+<h2><%=@task.name%></h2>
+<p><%=@task.description%></p>
+<%=button_to 'Work on this task', add_worker_path(@task), method: :patch%>
+<p>status: <%= @task.status %></p>

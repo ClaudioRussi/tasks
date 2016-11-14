@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161109182639) do
+ActiveRecord::Schema.define(version: 20161114161957) do
+
+  create_table "collaborator_projects", id: false, force: :cascade do |t|
+    t.integer "collaborator_id", null: false
+    t.integer "project_id",      null: false
+    t.index ["collaborator_id"], name: "index_collaborator_projects_on_collaborator_id"
+    t.index ["project_id"], name: "index_collaborator_projects_on_project_id"
+  end
 
   create_table "connection_requests", force: :cascade do |t|
     t.integer  "user_id"
@@ -47,6 +54,13 @@ ActiveRecord::Schema.define(version: 20161109182639) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["group_id"], name: "index_tasks_on_group_id"
+  end
+
+  create_table "tasks_workers", id: false, force: :cascade do |t|
+    t.integer "task_id",   null: false
+    t.integer "worker_id", null: false
+    t.index ["task_id"], name: "index_tasks_workers_on_task_id"
+    t.index ["worker_id"], name: "index_tasks_workers_on_worker_id"
   end
 
   create_table "users", force: :cascade do |t|
