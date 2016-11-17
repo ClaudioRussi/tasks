@@ -1,5 +1,7 @@
-<h1><%=@group.name %></h1>
-<%= link_to 'Add task', new_project_group_task_path(@group.project,@group)%>
-<% @group.tasks.each do |task| %>
-<p><%=link_to task.name, task_path(task) %></p>
-<% end %>
+<% if user_belongs_to_this_project?(@group.project)%>
+  <h1><%=@group.name %></h1>
+  <%= link_to 'Add task', new_group_task_path(@group)%>
+  <% @group.tasks.each do |task| %>
+    <p><%=link_to task.name, task_path(task) %></p>
+  <% end %>
+<%end%>

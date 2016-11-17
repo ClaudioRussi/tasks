@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.feature "CoWorkerCanWorkOnTasks", type: :feature do
   given(:user2){create(:user2)}
   given(:task) {create(:pending_task)}
+  
   scenario "User can work on task if is invited" do
     task.group.project.collaborators << user2
     task.save

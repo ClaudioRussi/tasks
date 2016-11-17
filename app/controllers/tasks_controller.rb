@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  before_action :authenticate_user!
+  before_action :make_sure_user_is_collaborator, only:[:create, :add_worker]
   def new
     @group = Group.find(params[:group_id])
     @task = @group.tasks.build
@@ -30,8 +32,24 @@ class TasksController < ApplicationController
     end
   end
 
+  def change_status
+    
+  end
+
   private
   def task_params
     params.require(:task).permit(:name, :description)
+  end
+
+  def make_sure_user_is_collaborator
+    if params[:id]
+      project = Task.find(params[:id]).group.project
+    else
+      project = Group.find(params[:group_id]).project
+    end
+    unless project.collaborators.include?(current_user) or project.author == current_user
+      flash[:notice]='You are not a collaborator'
+      redirect_to root_path
+    end
   end
 end

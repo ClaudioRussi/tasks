@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.feature "UserRegistrations", type: :feature do
+  before{visit 'sign_up'}
+
   scenario "trying to register with correct params" do
-    visit 'sign_up'
-    save_and_open_page
     fill_in 'First name', with: 'Pedro'
     fill_in 'Last name', with: 'Fernandez'
     fill_in 'Email', with: 'pedro@example.com'
@@ -14,7 +14,6 @@ RSpec.feature "UserRegistrations", type: :feature do
   end
 
   scenario "trying to register with blank name" do
-    visit 'sign_up'
     fill_in 'Last name', with: 'Fernandez'
     fill_in 'Email', with: 'pedro@example.com'
     fill_in 'Password', with: 'topsecret'
@@ -24,7 +23,6 @@ RSpec.feature "UserRegistrations", type: :feature do
   end
 
   scenario "trying to register with blank last name" do
-    visit 'sign_up'
     fill_in 'First name', with: 'Pedro'
     fill_in 'Email', with: 'pedro@example.com'
     fill_in 'Password', with: 'topsecret'
@@ -34,7 +32,6 @@ RSpec.feature "UserRegistrations", type: :feature do
   end
 
   scenario "trying to register with blank email" do
-    visit 'sign_up'
     fill_in 'First name', with: 'Pedro'
     fill_in 'Last name', with: 'Fernandez'
     fill_in 'Password', with: 'topsecret'
@@ -44,7 +41,6 @@ RSpec.feature "UserRegistrations", type: :feature do
   end
 
   scenario "trying to register with blank password" do
-    visit 'sign_up'
     fill_in 'First name', with: 'Pedro'
     fill_in 'Email', with: 'pedro@example.com'
     fill_in 'Password confirmation', with: 'topsecret'
@@ -53,7 +49,6 @@ RSpec.feature "UserRegistrations", type: :feature do
   end
 
   scenario "trying to register with blank password confirmation" do
-    visit 'sign_up'
     fill_in 'First name', with: 'Pedro'
     fill_in 'Last name', with: 'Fernandez'
     fill_in 'Email', with: 'pedro@example.com'

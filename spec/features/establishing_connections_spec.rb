@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.feature "EstablishingAconnection", type: :feature do
-  given(:user1) {create(:user,attributes_for(:user).except(:connection))}
+  given(:user1) {create(:user,attributes_for(:user))}
   given(:user2) {create(:user2)}
+  
   scenario "User send connection request" do
     sign_in(user1)
     visit user_path(user2)

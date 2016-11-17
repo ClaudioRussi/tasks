@@ -1,0 +1,9 @@
+<%if subject.errors.any? %>
+  <ul>
+  <%subject.errors.full_messages.each do |message| %>
+    <li>
+      <%=message %>
+    </li>
+  <%end%>
+  </ul>
+<%end%>

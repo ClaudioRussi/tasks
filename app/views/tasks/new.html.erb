@@ -1,11 +1,9 @@
-<h1>Create a new task </h1>
-<%if @task.errors.any? %>
-  <%@task.errors.full_messages.each do |message| %>
-    <%=message %>
+<% if user_belongs_to_this_project?(@task.group.project)%>
+  <%= render partial: 'layouts/errors', locals:{subject: @task}%>
+  <h1>Create a new task </h1>
+  <%= form_for [@group,@task] do |t| %>
+    <%= t.label :name %> <%=t.text_field :name %>
+    <%= t.label :description %> <%=t.text_area :description %>
+    <%= t.submit :create_task %>
   <%end%>
-<%end%>
-<%= form_for [@group.project,@group,@task] do |t| %>
-  <%= t.label :name %> <%=t.text_field :name %>
-  <%= t.label :description %> <%=t.text_area :description %>
-  <%= t.submit :create_task %>
 <%end%>

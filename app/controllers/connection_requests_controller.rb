@@ -1,4 +1,5 @@
 class ConnectionRequestsController < ApplicationController
+  before_action :authenticate_user!
   def create
     request = ConnectionRequest.new(user_id: current_user.id, connection_id: params[:user_id], status:'Unconfirmed')
     if request.save

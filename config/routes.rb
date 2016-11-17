@@ -10,13 +10,16 @@ Rails.application.routes.draw do
   end
 
   resources :projects do
-    resources :groups do
-      resources :tasks
-    end
+    resources :groups, only:[:new, :create]
   end
-  get 'task/:id', to: 'tasks#show', as: 'task'
+
+  resources :groups, except:[:new, :index, :create] do
+    resources :tasks, only:[:new, :create]
+  end
+
+  resources :tasks, except:[:new, :index, :create]
+
   patch 'add_worker/:id', to:'tasks#add_worker', as: 'add_worker'
-  get 'groups/:id', to: 'groups#show', as: 'group'
   patch 'add_collaborator/:id', to: 'projects#add_collaborator', as: 'add_collaborator'
 
   devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations'}
