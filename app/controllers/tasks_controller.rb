@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
   before_action :make_sure_user_is_collaborator
+  before_action :set_task, only:[:show, :add_worker, :change_status]
   def new
     @group = Group.find(params[:group_id])
     @task = @group.tasks.build
@@ -18,11 +19,9 @@ class TasksController < ApplicationController
   end
 
   def show
-    @task = Task.find(params[:id])
   end
 
   def add_worker
-    @task = Task.find(params[:id])
     @task.workers << current_user
     if @task.save
       flash[:notice] = 'You are now working on this task'
@@ -33,12 +32,18 @@ class TasksController < ApplicationController
   end
 
   def change_status
-
+    @task.status = params[:next_status]
+    @task.save
+    redirect_back(fallback_location: root_path)
   end
 
   private
   def task_params
     params.require(:task).permit(:name, :description)
+  end
+
+  def set_task
+    @task = Task.find(params[:id])
   end
 
   def make_sure_user_is_collaborator

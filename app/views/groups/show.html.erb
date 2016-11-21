@@ -1,24 +1,23 @@
 <% content_for :title, @group.name %>
-<%= link_to 'Add task', new_group_task_path(@group)%>
-<% @group.tasks.each do |task| %>
-<p><%=link_to task.name, task_path(task) %></p>
-<% end %>
 
 <div class="container main-wrapper">
   <div class="row">
-    <div class="col-sm-3 pending-tasks-list">
+    <div class="col-sm-4 pending-tasks-list">
       <h2>Pending tasks</h2>
       <%=render 'projects/tasks', collection: @group.tasks.pending %>
     </div>
 
-    <div class="col-sm-3 col-sm-offset-1 in-progress-tasks-list">
+    <div class="col-sm-4 in-progress-tasks-list">
       <h2>In progress tasks</h2>
       <%=render 'projects/tasks', collection: @group.tasks.in_progress %>
     </div>
 
-    <div class="col-sm-3 col-sm-offset-1 finished-tasks">
+    <div class="col-sm-4 finished-tasks">
       <h2>Finished tasks</h2>
       <%=render 'projects/tasks', collection: @group.tasks.finished %>
     </div>
   </div>
+
+  <%= link_to 'Add task', new_group_task_path(@group), class: 'btn-lg btn-success'%>
+
 </div>

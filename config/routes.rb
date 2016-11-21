@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   end
 
   resources :tasks, except:[:new, :index, :create]
+  patch 'change_status/:id', to: 'tasks#change_status', as: 'change_status'
 
 
   patch 'add_worker/:id', to:'tasks#add_worker', as: 'add_worker'
