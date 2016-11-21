@@ -1,7 +1,29 @@
 <%content_for :title, @task.name%>
-<p><%=@task.description%></p>
-<%if !is_working_on_task?(@task)%>
-<%=button_to 'Work on this task', add_worker_path(@task), method: :patch%>
-<%end%>
 
-<p>status: <%= @task.status %></p>
+<div id="tasks-main-wrapper" class= "container">
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2" id="description-wrapper">
+      <p><%=@task.description%></p>
+    </div>
+    <div class="col-sm-4 col-sm-offset-2">
+      <div id="info-wrapper">
+        <h3>Info</h3>
+        <p>Project: <%=link_to @task.project.name, project_path(@task.project) %></p>
+        <p>Group: <%=link_to @task.group.name, group_path(@task.group) %> </p>
+        <p>Status: <%= @task.status%> </p>
+      </div>
+    </div>
+    <div class="col-sm-4 workers-list-wrapper">
+      <h3>People working on this task</h3>
+      <ul id="workers-list">
+        <%@task.workers.each do |worker|%>
+        <li><%=link_to worker.full_name, user_path(worker)%></li>
+        <%end%>
+      </ul>
+    </div>
+  </div>
+  <%if !is_working_on_task?(@task)%>
+  <%=button_to 'Work on this task', add_worker_path(@task), method: :patch%>
+  <%end%>
+
+</div>

@@ -3,6 +3,7 @@ class Task < ApplicationRecord
   scope :in_progress, ->{where(status: 'In progress')}
   scope :finished, ->{where(status: 'Finished')}
   belongs_to :group
+  has_one :project, through: :group
   has_and_belongs_to_many :workers, class_name: 'User', join_table: :tasks_workers, association_foreign_key: :worker_id
 
   validates :name, presence:true, length:{maximum:50, minimum:3}

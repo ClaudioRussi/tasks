@@ -1,8 +1,17 @@
 <% content_for :title, 'Create a task' %>
-<%= render partial: 'layouts/errors', locals:{subject: @task}%>
-<h1>Create a new task </h1>
-<%= form_for [@group,@task] do |t| %>
-<%= t.label :name %> <%=t.text_field :name %>
-<%= t.label :description %> <%=t.text_area :description %>
-<%= t.submit :create_task %>
-<%end%>
+<div class="container main-wrapper">
+  <%= render partial: 'layouts/errors', locals:{subject: @task}%>
+  <div id="form-wrapper", class="col-sm-8 col-sm-offset-2">
+    <%= form_for [@group,@task], class: 'form-horizontal' do |t| %>
+      <div class="form-group">
+        <%= t.label :name %>
+        <%=t.text_field :name, class:'form-control' %>
+        <%= t.label :description %>
+        <%=t.text_area :description, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= t.submit 'Create task', class: 'btn btn-default' %>
+      </div>
+    <%end%>
+  </div>
+</div>

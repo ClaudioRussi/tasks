@@ -1,7 +1,7 @@
 <% content_for :title, 'Create a project' %>
 <div class="main-wrapper container"%>
   <%= render partial: 'layouts/errors', locals:{subject: @project}%>
-  <div id="form-wrapper">
+  <div id="form-wrapper" class="col-sm-8 col-sm-offset-2">
     <%= form_for @project, class:'form-horizontal' do|f|%>
       <div class = 'form-group'>
         <%=f.label :name%>
