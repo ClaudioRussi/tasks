@@ -1,0 +1,22 @@
+<% content_for :title, "Welcome to SinNombre, an application for project management" %>
+<div class="row">
+  <div class="col-xs-12" id="presentation-wrapper">
+    <div class="row", id ="text-container">
+      <div class="col-md-8 col-md-offset-2">
+        <div>
+          <% if current_user.authored_projects.count == 0%>
+            <h3>You can start creating your project right now!</h3>
+            <%= link_to 'Create your first project', new_project_path, class: 'btn-lg btn-success'%>
+          <%else%>
+            <h3>Welcome again <%="#{current_user.first_name}"%></h3>
+            <%= link_to 'Visit your projects', projects_path, class: 'btn-lg btn-success'%>
+          <%end%>
+        </div>
+        <div>
+          <h3>You can also find connections</h3>
+          <%= link_to 'Find connections', users_path, class: 'btn-lg btn-success'%>
+        </div>
+      <div>
+    </div>
+  </div>
+</div>

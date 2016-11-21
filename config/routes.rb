@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
-  get 'profile/:id', to:'users#show', as: 'user'
+  get 'users/index'
 
+
+  get 'profile/:id', to:'users#show', as: 'user'
+  get 'users', to:'users#index', as: 'users'
 
   devise_scope :user do
     get 'sign_in', to: 'devise/sessions#new'
@@ -18,6 +21,7 @@ Rails.application.routes.draw do
   end
 
   resources :tasks, except:[:new, :index, :create]
+
 
   patch 'add_worker/:id', to:'tasks#add_worker', as: 'add_worker'
   patch 'add_collaborator/:id', to: 'projects#add_collaborator', as: 'add_collaborator'

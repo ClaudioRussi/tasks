@@ -7,7 +7,7 @@ RSpec.feature "AddingTasksToAProjects", type: :feature do
 
   scenario "Adding a task with correct attributes" do
     sign_in group.project.author
-    visit group_path(group.project,group)
+    visit group_path(group)
     click_link "Add task"
     fill_in 'Name', with: task_attr[:name]
     fill_in 'Description', with: task_attr[:description]

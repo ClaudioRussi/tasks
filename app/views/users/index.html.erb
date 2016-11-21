@@ -1,0 +1,17 @@
+<% content_for :title, 'Connections' %>
+
+<%=form_tag 'users', method: :get do%>
+  <%=label_tag 'Find connections' %>
+  <%=search_field_tag :search, 'Email'%>
+  <%=submit_tag :search %>
+<%end%>
+
+<% if @connections_found %>
+  <%@connections_found.each do |connection| %>
+    <%=link_to connection.full_name + " (#{connection.email})", user_path(connection) %> <%= button_to 'Send connection request', send_request_path(connection) %>
+  <%end%>
+<%end%>
+
+<% @connections.each do |connection|%>
+  <%=link_to connection.full_name, user_path(connection) %>
+<% end %>

@@ -12,7 +12,7 @@ RSpec.feature "UserRegistrations", type: :feature do
     click_button 'Sign up'
     expect(page).to have_text "Welcome! You have signed up successfully."
   end
-
+  
   scenario "trying to register with blank name" do
     fill_in 'Last name', with: 'Fernandez'
     fill_in 'Email', with: 'pedro@example.com'

@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
-  before_action :make_sure_user_is_collaborator, only:[:create, :add_worker]
+  before_action :make_sure_user_is_collaborator
   def new
     @group = Group.find(params[:group_id])
     @task = @group.tasks.build
@@ -33,7 +33,7 @@ class TasksController < ApplicationController
   end
 
   def change_status
-    
+
   end
 
   private

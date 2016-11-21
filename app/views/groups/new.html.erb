@@ -1,9 +1,7 @@
-<% if user_belongs_to_this_project?(@group.project)%>
-  <h2>Create a group</h2>
-  <%= render partial: 'layouts/errors', locals:{subject: @group}%>
-  <%= form_for [@project,@group] do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    <%= f.submit 'Create group' %>
-  <%end%>
+<% content_for :title, 'Create a group'%>
+<%= render partial: 'layouts/errors', locals:{subject: @group}%>
+<%= form_for [@project,@group] do |f| %>
+<%= f.label :name %>
+<%= f.text_field :name %>
+<%= f.submit 'Create group' %>
 <%end%>

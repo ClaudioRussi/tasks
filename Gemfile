@@ -26,6 +26,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'capybara'
 
+gem 'bootstrap-sass'
+gem 'autoprefixer-rails'
+
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'

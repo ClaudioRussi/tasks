@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "User permissions", type: :feature do
   given(:user2) {create(:user2)}
-  given(:task) {create(:task)}
+  given(:task) {create(:pending_task)}
   given(:user1) {task.group.project.author}
 
   describe 'Guest' do
@@ -22,7 +22,7 @@ RSpec.feature "User permissions", type: :feature do
     end
 
   end
-  describe 'loged-in user'
+  describe 'loged-in user' do
     before{sign_in user1}
 
     scenario "User visiting home path" do
@@ -46,17 +46,17 @@ RSpec.feature "User permissions", type: :feature do
 
     scenario "Will be redirected to the home page if he visits a project's page" do
       visit project_path(task.group.project)
-      expect(page).to have_text 'You cannot access to this project'
+      expect(page).to have_text 'You are not a collaborator'
     end
 
     scenario "Will be redirected to home page if he visits a group's page" do
       visit group_path(task.group)
-      expect(page).to have_text 'You cannot access to this project'
+      expect(page).to have_text 'You are not a collaborator'
     end
 
     scenario "Will be redirected to home page if he visits a task's page" do
       visit task_path(task)
-      expect(page).to have_text 'You cannot access to this project'
+      expect(page).to have_text 'You are not a collaborator'
     end
   end
 
@@ -64,12 +64,12 @@ RSpec.feature "User permissions", type: :feature do
     before {sign_in user1}
     scenario "Will be able to visit the project's page" do
       visit project_path(task.group.project)
-      expect(page).to have_text project.name
+      expect(page).to have_text task.group.project.name
     end
 
     scenario "Will be able to visit a group's page" do
       visit group_path(task.group)
-      expect(page).to have_text group.name
+      expect(page).to have_text task.group.name
     end
 
     scenario "Will be able to visit a task's page" do
@@ -78,5 +78,4 @@ RSpec.feature "User permissions", type: :feature do
     end
 
   end
-
 end

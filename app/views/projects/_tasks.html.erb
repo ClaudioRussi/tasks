@@ -1,0 +1,13 @@
+<div class="row">
+  <% collection.find_each do |task|%>
+  <div class="col-sm-12">
+    <div class="thumbnail">
+      <div class="caption">
+        <h3><%= task.name %></h3>
+        <p><%=task.description%></p>
+        <p><a href="#" class="btn btn-warning" role="button">Button</a> <a href="#" class="btn btn-primary" role="button">Button</a></p>
+      </div>
+    </div>
+  </div>
+  <%end%>
+</div>

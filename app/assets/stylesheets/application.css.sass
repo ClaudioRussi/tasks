@@ -1,0 +1,64 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import "bootstrap-sprockets"
+@import "bootstrap"
+@import url('https://fonts.googleapis.com/css?family=Taviraj')
+@import url('https://fonts.googleapis.com/css?family=Lato')
+
+body
+  #header
+    font-family: 'Lato', sans-serif
+    padding-top: 1em
+    padding-bottom: 1em
+    border-bottom: 1px solid gray
+    background: #5cb85c
+    background: -webkit-linear-gradient(#5cb85c, #3ea83e)
+    background: -o-linear-gradient(#5cb85c, #3ea83e)
+    background: -moz-linear-gradient(#5cb85c, #3ea83e)
+    background: linear-gradient(#5cb85c, #3ea83e)
+
+    color: #EEEFF7
+    #header-title
+      text-align: center
+      h1
+        display: inline-block
+        text-align: center
+        margin: 0
+
+
+  font-family: 'Taviraj', serif
+  .navbar-default
+    border: 0
+    border-radius: 0
+    margin-bottom: 0
+    background-color: #31353D
+    box-shadow: 1px 0 3px 2px black
+    .navbar-brand:hover
+      color: #5cb85c
+    .navbar-brand
+      color: #EEEFF7
+    .navbar-nav
+      a
+        color: #EEEFF7
+      a:hover
+        color: white
+      a:focus
+        color: white
+    .dropdown-menu
+      background-color: #31353D
+      a:hover
+        color: #31353d

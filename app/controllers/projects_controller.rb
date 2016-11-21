@@ -12,7 +12,8 @@ class ProjectsController < ApplicationController
   end
 
   def index
-    @projects = current_user.authored_projects
+    @projects = current_user.authored_projects.includes(:author, :groups, :tasks, :collaborators)
+    @collaborating_projects = current_user.collaborating_projects.includes(:author, :groups, :tasks, :collaborators)
   end
 
   def new
@@ -53,9 +54,9 @@ class ProjectsController < ApplicationController
   end
 
   def make_sure_user_is_collaborator
-    @project = Project.find(params[:id])
+    @project = Project.eager_load(:author, :tasks, :collaborators, :groups).find(params[:id])
     unless @project.collaborators.include?(current_user) or @project.author == current_user
-      flash[:notice] = 'You cannot access to this project'
+      flash[:notice] = 'You are not a collaborator'
       redirect_to root_path
     end
   end

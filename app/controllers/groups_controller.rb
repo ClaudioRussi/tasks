@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
-  before_action :make_sure_user_is_collaborator, only:[:create]
+  before_action :make_sure_user_is_collaborator
   def new
     @project = Project.find(params[:project_id])
     @group = @project.groups.build
@@ -26,7 +26,11 @@ class GroupsController < ApplicationController
   end
 
   def make_sure_user_is_collaborator
-    @project = Project.find(params[:project_id])
+    if params[:project_id]
+      @project = Project.find(params[:project_id])
+    else
+      @project = Group.find(params[:id]).project
+    end
     unless @project.collaborators.include?(current_user) or @project.author == current_user
       flash[:notice] = 'You are not a collaborator'
       redirect_to root_path

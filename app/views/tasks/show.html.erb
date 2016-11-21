@@ -1,11 +1,7 @@
-<% if user_belongs_to_this_project?(@task.group.project)%>
-  <h2><%=@task.name%></h2>
-  <p><%=@task.description%></p>
-  <%if !is_working_on_task?(@task)%>
-        <%=button_to 'Work on this task', add_worker_path(@task), method: :patch%>
-  <%end%>
-
-  <p>status: <%= @task.status %></p>
-<%else%>
-  <h2>You must be collaborating in order to see this page </h2>
+<%content_for :title, @task.name%>
+<p><%=@task.description%></p>
+<%if !is_working_on_task?(@task)%>
+<%=button_to 'Work on this task', add_worker_path(@task), method: :patch%>
 <%end%>
+
+<p>status: <%= @task.status %></p>

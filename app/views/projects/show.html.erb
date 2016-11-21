@@ -1,25 +1,70 @@
-<% if user_belongs_to_this_project?(@project)%>
-  <h2><%= @project.name %> </h2>
-  <p>Tasks:  <%=@project.tasks.count %></p>
-  <p>Groups: </p>
-  <ul>
-    <% @project.groups.each do |group|%>
-      <li>
-        <%=link_to group.name, group_path(group) %>
-      </li>
-    <%end%>
-  </ul>
-  <ul>
-    <% @project.collaborators.each do |collaborator| %>
-      <%=link_to collaborator.full_name, user_path(collaborator) %>
-    <%end%>
-  </ul>
-  <p><%=link_to 'Add a new group', new_project_group_path(@project)%> </p>
-  <%if @project.author == current_user %>
-    <%=form_tag add_collaborator_path(@project), method: :patch do%>
-      <%=label_tag :add_collaborator %>
-      <%=select_tag(:collaborator_id, options_for_select(@connections_to_add)) %>
-      <%=submit_tag 'Add to project'%>
-    <%end%>
-  <%end%>
-<%end%>
+<% content_for :title, @project.name %>
+<div class="main-wrapper container">
+  <div class="row">
+
+    <div class="col-sm-8">
+      <div class="show-description"
+        <p><%=@project.description%></p>
+      </div>
+
+      <div id="form-wrapper">
+        <%if @project.author == current_user %>
+          <%=form_tag add_collaborator_path(@project), method: :patch, class:'form-horizontal' do%>
+            <div class = 'form-group'>
+              <%=label_tag :add_collaborator %>
+            </div>
+            <div class = 'form-group'>
+              <%=select_tag :collaborator_id, options_for_select(@connections_to_add), class: 'form-control' %>
+            </div>
+            <div class = 'form-group'>
+              <%=submit_tag 'Add to project', class: 'btn btn-default'%>
+            </div>
+          <%end%>
+        <%end%>
+      </div>
+    </div>
+
+    <div class="col-sm-2 col-sm-offset-2">
+      <div class="collection-list">
+        <h4> Collaborators </h4>
+        <ul>
+          <% @project.collaborators.each do |collaborator| %>
+            <li><%=link_to collaborator.full_name, user_path(collaborator) %></li>
+          <%end%>
+        </ul>
+      </div>
+
+      <div class="collection-list">
+        <h4> Groups </h4>
+        <ul>
+          <% @project.groups.each do |group| %>
+            <li><%=link_to group.name, group_path(group) %></li>
+          <%end%>
+        </ul>
+
+        <p><%=link_to 'Add a new group', new_project_group_path(@project), class: 'btn btn-default'%> </p>
+      </div>
+
+      <div class="collection-list">
+        <h4>Tasks</h4>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <span class="badge"><%=@project.tasks.pending.count%></span>
+            Pending tasks
+          </li>
+          <li class="list-group-item">
+            <span class="badge"><%=@project.tasks.in_progress.count%></span>
+            In progress tasks
+          </li>
+
+          <li class="list-group-item">
+            <span class="badge"><%=@project.tasks.finished.count%></span>
+            Finished tasks
+          </li>
+        </ul>
+      </div>
+
+
+    </div>
+  </div>
+</div>
