@@ -6,10 +6,10 @@
   <%=submit_tag :search %>
 <%end%>
 
-<% if @connections_found %>
-  <%@connections_found.each do |connection| %>
-    <%=link_to connection.full_name + " (#{connection.email})", user_path(connection) %> <%= button_to 'Send connection request', send_request_path(connection) %>
-  <%end%>
+<% if @connection_found && !current_user.accepted_connections.include?(@connection_found)%>
+  <%=link_to connection.full_name + " (#{@connection_found.email})", user_path(@connection_found) %> <%= button_to 'Send connection request', send_request_path(@connection_found) %>
+<% else %>
+  <p> User not found or is already in your connections </p>
 <%end%>
 
 <% @connections.each do |connection|%>

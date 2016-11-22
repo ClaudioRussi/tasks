@@ -11,7 +11,7 @@ RSpec.feature "AddingTasksToAProjects", type: :feature do
     click_link "Add task"
     fill_in 'Name', with: task_attr[:name]
     fill_in 'Description', with: task_attr[:description]
-    click_button :create_task
+    click_button 'Create task'
     expect(page).to have_text "Task successfully created"
   end
 end

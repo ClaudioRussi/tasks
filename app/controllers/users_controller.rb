@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   def index
     if params[:search] && params[:search] != current_user.email
-      @connections_found = User.where(email: params[:search])
+      @connection_found = User.find_by(email: params[:search])
     end
     @connections = current_user.accepted_connections
   end

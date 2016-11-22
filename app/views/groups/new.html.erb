@@ -1,6 +1,6 @@
 <% content_for :title, 'Create a group'%>
 <div class="container main-wrapper">
-  <%= render partial: 'layouts/errors', locals:{subject: @project}%>
+  <%= render partial: 'layouts/errors', locals:{subject: @group}%>
   <div id="form-wrapper" class="col-sm-8 col-sm-offset-2">
     <%= form_for [@project,@group], class: 'form-horizontal' do |f| %>
     <div class="form-group">
