@@ -7,7 +7,7 @@
 <%end%>
 
 <% if @connection_found && !current_user.accepted_connections.include?(@connection_found)%>
-  <%=link_to connection.full_name + " (#{@connection_found.email})", user_path(@connection_found) %> <%= button_to 'Send connection request', send_request_path(@connection_found) %>
+  <%=link_to @connection_found.full_name + " (#{@connection_found.email})", user_path(@connection_found) %> <%= button_to 'Send connection request', send_request_path(@connection_found) %>
 <% else %>
   <p> User not found or is already in your connections </p>
 <%end%>

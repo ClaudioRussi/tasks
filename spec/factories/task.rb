@@ -1,8 +1,8 @@
 FactoryGirl.define do
-  factory :task_in_progress, class: :task do
+  factory :in_progress_task, class: :task do
     name {'Test'}
     description {'Test the application'}
-    status {'In Progress'}
+    status {'In progress'}
     group
   end
 
@@ -13,10 +13,10 @@ FactoryGirl.define do
     group
   end
 
-  factory :completed_task, class: :task do
+  factory :finished_task, class: :task do
     name {'Create controllers'}
     description {"Create the application's controllers"}
-    status {'Completed'}
+    status {'Finished'}
     group
   end
 end

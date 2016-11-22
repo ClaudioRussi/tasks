@@ -4,17 +4,17 @@
   <div class="row">
     <div class="col-sm-4 pending-tasks-list">
       <h2>Pending tasks</h2>
-      <%=render 'projects/tasks', collection: @group.tasks.pending %>
+      <%=render 'groups/tasks', collection: @group.tasks.pending %>
     </div>
 
     <div class="col-sm-4 in-progress-tasks-list">
       <h2>In progress tasks</h2>
-      <%=render 'projects/tasks', collection: @group.tasks.in_progress %>
+      <%=render 'groups/tasks', collection: @group.tasks.in_progress %>
     </div>
 
-    <div class="col-sm-4 finished-tasks">
+    <div class="col-sm-4 finished-tasks-list">
       <h2>Finished tasks</h2>
-      <%=render 'projects/tasks', collection: @group.tasks.finished %>
+      <%=render 'groups/tasks', collection: @group.tasks.finished %>
     </div>
   </div>
 
